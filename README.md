@@ -20,7 +20,7 @@ Unpack, change some variables, setup a cronjob and go!
 First get the code and unpack it to your webroot:
 
     cd /var/www/html/
-    git clone https://github.com/RCDaddy/certificate-expiry-monitor.git
+    git clone https://github.com/SoleAngelus/certificate-expiry-monitor.git
 
 Create the database files, outside of your webroot. If you create these inside your webroot, everybody can read them.
 
@@ -57,4 +57,3 @@ Set up the cronjob to run once a day:
 
 
 The default timeout for checks is 2 seconds. If this is too fast for your internal services, this can be raised in the `variables.php` file.
-
