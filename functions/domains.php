@@ -1,5 +1,5 @@
 <?php
-// Copyright (C) 2019 Remy van Elst
+// Copyright (C) 2020 Daniel Morris
 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -22,18 +22,14 @@ function validate_domains($domains) {
   $domains = array_unique($domains);
 
   foreach ($domains as $key => $value) {
-    $value = trim(strtolower($value));
+    $value = trim(mb_strtolower($value));
     // check if reasonably valid domain
     if ( !preg_match("/^([a-z\d](-*[a-z\d])*)(\.([a-z\d](-*[a-z\d])*))*$/i", $value) && !preg_match("/^.{1,253}$/", $value) && !preg_match("/^[^\.]{1,63}(\.[^\.]{1,63})*$/", $value) ) {
       $errors[] = "Invalid domain name: " . htmlspecialchars($value) . ".";
     }
 
     // check valid dns record
-    $ips = @dns_get_record($value, DNS_A + DNS_AAAA);
-    if(!$ips) {
-        $errors[] = "Error resolving domain: " . htmlspecialchars($value);
-       continue;
-    }
+    $ips = dns_get_record($value, DNS_A + DNS_AAAA);
     sort($ips);
     if ( count($ips) >= 1 ) {
       if (!empty($ips[0]['type']) ) {
@@ -59,10 +55,8 @@ function validate_domains($domains) {
   if (is_array($errors) && count($errors) == 0) {
     foreach ($domains as $key => $value) {
       $raw_chain = get_raw_chain(trim($value));
-      if ($raw_chain['error']) {
-        foreach ($raw_chain['error'] as $error_key => $error_value) {
-          $errors[] = "\n - " . htmlspecialchars($error_value);
-        }
+      if (!$raw_chain) {
+        $errors[] = "Domain has invalid or no certificate: " . htmlspecialchars($value) . ".";
       } else {
         foreach ($raw_chain['chain'] as $raw_key => $raw_value) {
           $cert_expiry = cert_expiry($raw_value);

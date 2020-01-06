@@ -1,5 +1,5 @@
 <?php
-// Copyright (C) 2019 Remy van Elst
+// Copyright (C) 2020 Daniel Morris
 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -58,10 +58,6 @@ if ( isset($_GET['id']) && !empty($_GET['id'])  ) {
   echo "Please return and try again.<br>";
   echo "</div>";
 }
-
-echo "<div class='content'><section id='faq'>";
-require('inc/faq.php');
-echo "</div>";
 
 require('inc/footer.php');
 

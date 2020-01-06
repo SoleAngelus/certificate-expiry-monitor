@@ -1,5 +1,5 @@
 <?php
-// Copyright (C) 2019 Remy van Elst
+// Copyright (C) 2020 Daniel Morris
 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -15,14 +15,14 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ?>
-</div></div>
-<div class="navbar navbar-fixed-bottom">
-    <div class="footer">
-      <div class="col-md-10 col-md-offset-1 container">
-      <p class="text-muted">By <a href="https://raymii.org/">Remy van Elst</a>. License: GNU AGPLv3. <a href="https://github.com/RaymiiOrg/certificate-expiry-monitor">Source code</a>. <strong><a href="https://cipherli.st/">Strong SSL Ciphers & Config settings @ Cipherli.st</a></strong>. Version: <?php echo $version; ?></p>
-      </div>
+  <footer class="footer mt-auto py-3">
+    <div class="container">
+      <span class="text-muted"><!-- Footer Text --></span>
     </div>
-  </div>
+  </footer>
 
+  <script src="<?php echo(htmlspecialchars($current_folder)); ?>js/jquery-3.4.1.slim.min.js"></script>
+  <script src="<?php echo(htmlspecialchars($current_folder)); ?>js/popper.min.js"></script>
+  <script src="<?php echo(htmlspecialchars($current_folder)); ?>js/bootstrap.min.js"></script>
 </body>
 </html>

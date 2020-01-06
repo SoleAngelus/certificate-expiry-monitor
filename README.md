@@ -8,9 +8,10 @@ See the example site: https://certificatemonitor.org/
 
 ## Requirements
 
-- PHP 5.6+
+- PHP 5.6+ (7.0 recommended)
 - OpenSSL
 - PHP must allow remote fopen.
+- PHP mbstring 
 
 ## Installation
 
@@ -19,7 +20,7 @@ Unpack, change some variables, setup a cronjob and go!
 First get the code and unpack it to your webroot:
 
     cd /var/www/html/
-    git clone https://github.com/RaymiiOrg/certificate-expiry-monitor.git
+    git clone https://github.com/RCDaddy/certificate-expiry-monitor.git
 
 Create the database files, outside of your webroot. If you create these inside your webroot, everybody can read them.
 
@@ -27,6 +28,7 @@ Create the database files, outside of your webroot. If you create these inside y
     echo '{}' > /var/www/certificate-expiry-monitor-db/checks.json
     echo '{}' > /var/www/certificate-expiry-monitor-db/deleted_checks.json
     chown -R $wwwuser /var/www/certificate-expiry-monitor-db/*.json
+
 
 These files are used by the tool as database for checks.
 
@@ -50,7 +52,7 @@ And `$current_link`, which may or may not be the same. It is used in the confirm
 
 Set up the cronjob to run once a day:
 
-    # /etc/cron.d/certificate-expiry-monitor
+    # /etc/cron.d/certificate-exipry-monitor
     1 1 * * * $wwwuser /path/to/php /var/www/html/certificate-expiry-monitor/cron.php >> /var/log/certificate-expiry-monitor.log 2>&1
 
 

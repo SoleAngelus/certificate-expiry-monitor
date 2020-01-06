@@ -1,5 +1,5 @@
 <?php
-// Copyright (C) 2019 Remy van Elst
+// Copyright (C) 2020 Daniel Morris
 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -15,27 +15,14 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ?>
-
 <!doctype html>
 <html lang="en">
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title><?php echo $title;?></title>
   <link rel="stylesheet" href="<?php echo(htmlspecialchars($current_folder)); ?>css/bootstrap.min.css">
   <link rel="stylesheet" href="<?php echo(htmlspecialchars($current_folder)); ?>css/ssl.css">
 </head>
 <body>
-
-<?php
-
-echo "<div id='page-content-wrapper'>";
-echo "<div class='container-fluid'>";
-echo "<div class='row'>";
-
-echo "<div class='col-md-10 col-md-offset-1'><div class='page-header'><h1>";
-echo htmlspecialchars($title);
-echo "</h1></div>";
-
-?>

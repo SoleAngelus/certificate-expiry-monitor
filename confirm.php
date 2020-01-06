@@ -1,5 +1,5 @@
 <?php
-// Copyright (C) 2019 Remy van Elst
+// Copyright (C) 2020 Daniel Morris
 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -40,19 +40,17 @@ if ( isset($_GET['id']) && !empty($_GET['id'])  ) {
       echo "</div>";
     }
   } else {
-      echo "<div class='alert alert-danger' role='alert'>";;
+      echo "<div class='alert alert-danger' role='alert'>";
       echo "Error. ID is invalid.<br>";
       echo "Please return and try again.<br>";
       echo "</div>";
   }
 } else {
-  echo "<div class='alert alert-danger' role='alert'>";;
+  echo "<div class='alert alert-danger' role='alert'>";
   echo "Error. ID is required.<br>";
   echo "Please return and try again.<br>";
   echo "</div>";
 }
-
-require('inc/faq.php');
 
 require('inc/footer.php');
 

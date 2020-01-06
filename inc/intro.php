@@ -1,5 +1,5 @@
 <?php
-// Copyright (C) 2019 Remy van Elst
+// Copyright (C) 2020 Daniel Morris
 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -16,12 +16,8 @@
 
 ?>
 
-<p>SSL Certificates expire within a certain timeframe. Most of the time it is one year, sometimes it is longer or shorter.<br> Do you remember all the certificates you have and when you've bought them? Probably not. <br></p>
-
-<p>This tool will help you remember when your certificates expire. Enter one or more websites below, we'll then monitor these sites and notify you a few times before they expire. <br>This way, you'll never forget to renew your certificates.<br></p>
-
-<p>This is open source software. If you encounter any issues, please report them <a href="https://github.com/RaymiiOrg/certificate-expiry-monitor">here</a>.
-
+<p>SSL Certificates expire within a certain timeframe. Most of the time it is one year, sometimes it is longer or shorter.<br> Do you remember all the certificates you have and when you've bought them? Probably not.</p>
+<p>This tool will help you remember when your certificates expire. Enter one or more websites below, we'll then monitor these sites and notify you a few times before they expire. <br>This way, you'll never forget to renew your certificates.</p>
 <hr>
 
 

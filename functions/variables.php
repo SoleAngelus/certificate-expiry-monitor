@@ -1,5 +1,5 @@
 <?php
-// Copyright (C) 2019 Remy van Elst
+// Copyright (C) 2020 Daniel Morris
 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-$version = 1.4;
+$version = 1.3;
 $title = "Certificate Expiry Monitor";
 
 $current_folder = get_current_folder();
@@ -28,14 +28,17 @@ ini_set('default_socket_timeout', 2);
 
 $random_blurp = rand(1000,99999);
 
-$current_domain = "certificatemonitor.org";
-$current_link = $current_domain;
+$current_domain = "ssl.billianit.co.uk";
+$current_link = "ssl.billianit.co.uk";
+
+$showListOfDomains = true;
+$showEmailsOnListOfDomains = true;
+$showClickToUnsubscribeOnListOfDomains = true;
 
 // set this to a location outside of your webroot so that it cannot be accessed via the internets.
 
-
-$pre_check_file = '/var/www/certificatemonitor.org/cert-monitor/pre_checks.json';
-$check_file = '/var/www/certificatemonitor.org/cert-monitor/checks.json';
-$deleted_check_file = '/var/www/certificatemonitor.org/cert-monitor/deleted_checks.json';
+$pre_check_file = '/home/billianssl/certificate-expiry-monitor/pre_checks.json';
+$check_file = '/home/billianssl/certificate-expiry-monitor/checks.json';
+$deleted_check_file = '/home/billianssl/certificate-expiry-monitor/deleted_checks.json';
 
 ?>
