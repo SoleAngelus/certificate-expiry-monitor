@@ -4,6 +4,8 @@
 
 Certificate Expiry Monitor is an open source monitoring tool for certificates. It monitors websites and emails you when the certificates are about to expire.
 
+See the example site: https://certificatemonitor.org/
+
 ## Requirements
 
 - PHP 5.6+ (7.0 recommended)
@@ -18,7 +20,7 @@ Unpack, change some variables, setup a cronjob and go!
 First get the code and unpack it to your webroot:
 
     cd /var/www/html/
-    git clone https://github.com/SoleAngelus/certificate-expiry-monitor.git
+    git clone https://github.com/RCDaddy/certificate-expiry-monitor.git
 
 Create the database files, outside of your webroot. If you create these inside your webroot, everybody can read them.
 
@@ -42,11 +44,11 @@ Change the location of these files in `variables.php`:
 
 Also change the `$current_domain` variable, it is used in all the email addresses.
 
-    $current_domain = "yourdomain.co.uk";
+    $current_domain = "certificatemonitor.org";
 
 And `$current_link`, which may or may not be the same. It is used in the confirm and unsubscribe links, and depends on your webserver configuration. `example.com/subdir` here means your unsubscribe links will start `https://example.com/subdir/unsubscribe.php`.
 
-    $current_link = "yourdomain.co.uk";
+    $current_link = "certificatemonitor.org";
 
 Set up the cronjob to run once a day:
 
@@ -55,3 +57,4 @@ Set up the cronjob to run once a day:
 
 
 The default timeout for checks is 2 seconds. If this is too fast for your internal services, this can be raised in the `variables.php` file.
+

@@ -20,70 +20,88 @@ foreach (glob("functions/*.php") as $filename) {
 }
 
 require('inc/header.php');
+require('inc/nav.php');
+?>
 
-echo "<div class='content'><section id='result'>";
+<!-- Begin page content -->
+<main role="main" class="flex-shrink-0">
+  <div class="container-fluid">
+    
+    <!--
+    <h1>Heading</h1>
+    <p class="lead">Lead text</p>
+    <p>Body text</p>
+    -->
+    
+    <div class="content-container">
+    <?php
+    echo "<div class='content'><section id='result'>";
 
-if ( isset($_POST['email']) && !empty($_POST['email']) && isset($_POST['domains']) && !empty($_POST['domains']) ) {
+    if ( isset($_POST['email']) && !empty($_POST['email']) && isset($_POST['domains']) && !empty($_POST['domains']) ) {
 
-  $errors = array();
-  if (validate_email($_POST['email'])) {
-    $email = htmlspecialchars($_POST['email']);
-  } else {
-    $errors[] = "Invalid email address.";
-  }
+      $errors = array();
+      if (validate_email($_POST['email'])) {
+        $email = htmlspecialchars($_POST['email']);
+      } else {
+        $errors[] = "Invalid email address.";
+      }
 
-  $domains = validate_domains($_POST['domains']);
-  if ( count($domains['errors']) >= 1 ) {
-    foreach ($domains['errors'] as $key => $value) {
-      $errors[] = $value;
-    }
-  } 
-  
-  if (is_array($errors) && count($errors) != 0) {
-    $errors = array_unique($errors);
-    foreach ($errors as $key => $value) {
-      echo "<div class='alert alert-danger' role='alert'>";
-      echo htmlspecialchars($value);
-      echo "</div>";
-    }
-    echo "Please return and try again.<br>";
-  } elseif ( is_array($errors) && count($errors) == 0 && is_array($domains['domains']) && count($domains['domains']) != 0 && count($domains['domains']) < 21) {
-    echo "<div class='alert alert-info' role='alert'>";
-    echo "Email: " . htmlspecialchars($email) . ".<br>";
-    echo "</div>";
-    foreach ($domains['domains'] as $key => $value) {
-      $userip = $_SERVER["HTTP_X_FORWARDED_FOR"] ? $_SERVER["HTTP_X_FORWARDED_FOR"] : $_SERVER["REMOTE_ADDR"];
-      $add_domain = add_domain_to_pre_check($value, $email, $userip);
-      if (is_array($add_domain["errors"]) && count($add_domain["errors"]) != 0) {
-        $errors = array_unique($add_domain["errors"]);
-        foreach ($add_domain["errors"] as $key => $err_value) {
+      $domains = validate_domains($_POST['domains']);
+      if ( count($domains['errors']) >= 1 ) {
+        foreach ($domains['errors'] as $key => $value) {
+          $errors[] = $value;
+        }
+      } 
+      
+      if (is_array($errors) && count($errors) != 0) {
+        $errors = array_unique($errors);
+        foreach ($errors as $key => $value) {
           echo "<div class='alert alert-danger' role='alert'>";
-          echo htmlspecialchars($err_value);
+          echo htmlspecialchars($value);
           echo "</div>";
         }
+        echo "Please return and try again.<br>";
+      } elseif ( is_array($errors) && count($errors) == 0 && is_array($domains['domains']) && count($domains['domains']) != 0 && count($domains['domains']) < 21) {
+        echo "<div class='alert alert-info' role='alert'>";
+        echo "Email: " . htmlspecialchars($email) . ".<br>";
+        echo "</div>";
+        foreach ($domains['domains'] as $key => $value) {
+          $userip = $_SERVER["HTTP_X_FORWARDED_FOR"] ? $_SERVER["HTTP_X_FORWARDED_FOR"] : $_SERVER["REMOTE_ADDR"];
+          $add_domain = add_domain_to_pre_check($value, $email, $userip);
+          if (is_array($add_domain["errors"]) && count($add_domain["errors"]) != 0) {
+            $errors = array_unique($add_domain["errors"]);
+            foreach ($add_domain["errors"] as $key => $err_value) {
+              echo "<div class='alert alert-danger' role='alert'>";
+              echo htmlspecialchars($err_value);
+              echo "</div>";
+            }
+          } else {
+            echo "<div class='alert alert-success' role='alert'>";
+            echo "Confirmation email sent. Please confirm your subscription email to complete the process.<br>";
+            echo "</div>";
+          }
+        }
       } else {
-        echo "<div class='alert alert-success' role='alert'>";
-        echo "Confirmation email sent. Please confirm your subscription email to complete the process.<br>";
+        echo "<div class='alert alert-danger' role='alert'>";
+        echo "Too many domains.<br>";
+        echo "Please return and try again.<br>";
         echo "</div>";
       }
+    } else {
+
+      echo "<div class='alert alert-danger' role='alert'>";
+      echo "Error. Domain(s) and email address are required.<br>";
+      echo "Please return and try again.<br>";
+      echo "</div>";
     }
-  } else {
-    echo "<div class='alert alert-danger' role='alert'>";
-    echo "Too many domains.<br>";
-    echo "Please return and try again.<br>";
-    echo "</div>";
-  }
-} else {
+    
+    require('inc/faq.php');
+    ?>
+    
+    </div>
+  </div>
+</main>
 
-  echo "<div class='alert alert-danger' role='alert'>";;
-  echo "Error. Domain(s) and email address are required.<br>";
-  echo "Please return and try again.<br>";
-  echo "</div>";
-}
-
-
-require('inc/faq.php');
-
+<?php
 require('inc/footer.php');
-
 ?>

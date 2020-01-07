@@ -1,6 +1,6 @@
 <div id='sslform'>
   <form class="form-horizontal" action="add.php" method="POST">
-    <p>Please enter the domain(s) you want to monitor for certificate expiry. You can add max. 20 domains at once.<br></p>
+    <p>Please enter the domain(s) you want to monitor for certificate expiry. You can add max. 20 domains at once.</p>
     <fieldset>
 
       <div class="form-group">
@@ -19,10 +19,11 @@
 
       <div class="form-group">
         <div class="col-md-4">
-          <label class="col-md-2 col-md-offset-1 control-label" for="s"></label>
           <button id="s" name="s" class="btn btn-primary">Submit</button>
+          <label class="col-md-2 col-md-offset-1 control-label" for="s"></label>
         </div>
       </div>
+
     </fieldset>
   </form>
 </div>
